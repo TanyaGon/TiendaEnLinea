@@ -1,14 +1,20 @@
 package sv.edu.udb.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
+
 
 @Entity
 @Table(name = "productos")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@NamedQueries({
+        @NamedQuery(name = "prodcuto.findAll", query = "select p from Producto p")
+})
+
 public class Producto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,23 +27,6 @@ public class Producto {
 
     @ManyToOne
     private Usuario usuario;
-
-    public Producto() {
-
-    }
-
-
-    public Producto(Integer id, String nombre, String descripcion, String imagen, double precio, int cantidad, Usuario usuario) {
-        super();
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.imagen = imagen;
-        this.precio = precio;
-        this.cantidad = cantidad;
-        this.usuario = usuario;
-    }
-
 
 
     public Integer getId() {

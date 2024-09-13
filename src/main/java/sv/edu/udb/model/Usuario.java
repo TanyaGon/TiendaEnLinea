@@ -2,15 +2,20 @@ package sv.edu.udb.model;
 
 import java.util.List;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "usuarios")
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@NamedQueries({
+    @NamedQuery(name = "Usuario.findAll", query = "select u from Usuario u")
+})
+
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,9 +33,6 @@ public class Usuario {
 
     @OneToMany(mappedBy = "usuario")
     private List<Orden> ordenes;
-
-    public Usuario() {
-    }
 
     public Usuario(Integer id, String nombre, String username, String email, String direccion, String telefono, String tipo, String password) {
         super();
