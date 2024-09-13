@@ -1,26 +1,46 @@
 package sv.edu.udb.model;
 
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "ordenes")
 public class Orden {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String numero;
     private Date fechaCreacion;
-    private  Date fechaModificacion;
+    private Date fechaRecibida;
+
+    private double total;
+
+    @ManyToOne
+    private Usuario usuario;
+
+    @OneToMany(mappedBy = "orden")
+    private List<DetalleOrden> detalle;
 
     public Orden() {
+
     }
 
-    //Constructor
-    public Orden(Integer id, String numero, Date fechaCreacion, Date fechaModificacion) {
+    public Orden(Integer id, String numero, Date fechaCreacion, Date fechaRecibida, double total) {
         super();
         this.id = id;
         this.numero = numero;
         this.fechaCreacion = fechaCreacion;
-        this.fechaModificacion = fechaModificacion;
+        this.fechaRecibida = fechaRecibida;
+        this.total = total;
     }
-
-    //Getter y Setter
 
     public Integer getId() {
         return id;
@@ -28,22 +48,6 @@ public class Orden {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Date getFechaModificacion() {
-        return fechaModificacion;
-    }
-
-    public void setFechaModificacion(Date fechaModificacion) {
-        this.fechaModificacion = fechaModificacion;
-    }
-
-    public Date getFechaCreacion() {
-        return fechaCreacion;
-    }
-
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
     }
 
     public String getNumero() {
@@ -54,15 +58,53 @@ public class Orden {
         this.numero = numero;
     }
 
-    //Metodo toString para retornar las variables de la clase
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Date getFechaRecibida() {
+        return fechaRecibida;
+    }
+
+    public void setFechaRecibida(Date fechaRecibida) {
+        this.fechaRecibida = fechaRecibida;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+
+    public List<DetalleOrden> getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(List<DetalleOrden> detalle) {
+        this.detalle = detalle;
+    }
 
     @Override
     public String toString() {
-        return "Orden{" +
-                "id=" + id +
-                ", numero='" + numero + '\'' +
-                ", fechaCreacion=" + fechaCreacion +
-                ", fechaModificacion=" + fechaModificacion +
-                '}';
+        return "Orden [id=" + id + ", numero=" + numero + ", fechaCreacion=" + fechaCreacion + ", fechaRecibida="
+                + fechaRecibida + ", total=" + total + "]";
     }
+
+
 }

@@ -1,6 +1,19 @@
 package sv.edu.udb.model;
 
+import java.util.List;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String username;
@@ -10,16 +23,20 @@ public class Usuario {
     private String tipo;
     private String password;
 
-    public Usuario() {
+    @OneToMany(mappedBy = "usuario")
+    private List<Producto> productos;
 
+    @OneToMany(mappedBy = "usuario")
+    private List<Orden> ordenes;
+
+    public Usuario() {
     }
 
-    //Constructor
-    public Usuario(Integer id, String username, String nombre, String email, String direccion, String telefono, String tipo, String password) {
+    public Usuario(Integer id, String nombre, String username, String email, String direccion, String telefono, String tipo, String password) {
         super();
         this.id = id;
-        this.username = username;
         this.nombre = nombre;
+        this.username = username;
         this.email = email;
         this.direccion = direccion;
         this.telefono = telefono;
@@ -27,7 +44,6 @@ public class Usuario {
         this.password = password;
     }
 
-    //Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -36,20 +52,20 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
@@ -92,18 +108,19 @@ public class Usuario {
         this.password = password;
     }
 
-    //Metodo toString que rretorna todos los datos de la calse
+    public List<Producto> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<Producto> productos) {
+        this.productos = productos;
+    }
+
     @Override
     public String toString() {
-        return "Usuario{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", direccion='" + direccion + '\'' +
-                ", telefono='" + telefono + '\'' +
-                ", tipo='" + tipo + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "Usuario [id=" + id + ", nombre=" + nombre + ", username=" + username + ", email=" + email
+                + ", direccion=" + direccion + ", telefono=" + telefono + ", tipo=" + tipo + ", password=" + password
+                + "]";
     }
+
 }
