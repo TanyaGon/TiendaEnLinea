@@ -13,10 +13,10 @@ public class UsuarioRepositoryTest {
 
     @Test
     void insertUser() {
-        String nombre = "Mario";
-        String username = "mario";
-        String email = "mario03@email.com";
-        String direccion = "Africano";
+        String nombre = "Ana";
+        String username = "ana02";
+        String email = "ana@email.com";
+        String direccion = "EEUU";
         String telefono = "5687-2543";
         String tipo = "Cliente";
         String password = "1234";
@@ -35,13 +35,12 @@ public class UsuarioRepositoryTest {
     }
     @Test
     void findUserById(){
-        int id = 2;
+        int id = 6;
         Usuario usuario = usuarioRepository.findById(id);
         System.out.println("Usuario encontrado");
         System.out.println(usuario.toString());
     }
-
-    /*@Test
+    @Test
     void update() {
         int id = 1;
         String nombre = "Jose";
@@ -53,6 +52,7 @@ public class UsuarioRepositoryTest {
         String password = "1234";
         Usuario usuario = Usuario
                 .builder()
+                .id(1)
                 .nombre(nombre)
                 .username(username)
                 .email(email)
@@ -68,14 +68,12 @@ public class UsuarioRepositoryTest {
     }
     @Test
     void delete(){
-        int id = 2;
+        int id = 1;
         Usuario usuario = Usuario
                 .builder()
-                    .id(id)
+                .id(id)
                 .build();
         usuarioRepository.delete(usuario);
         System.out.println("Usuario eliminado");
-    }*/
-
-
+    }
 }

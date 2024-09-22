@@ -20,7 +20,7 @@ public class UsuarioRepository {
         em.persist(usuario);
     }
     public void delete(Usuario usuario) {
-        em.remove(usuario);
+        em.remove(em.find(Usuario.class, usuario.getId()));
     }
     public Usuario findById(int id) {
         return em.find(Usuario.class, id);
