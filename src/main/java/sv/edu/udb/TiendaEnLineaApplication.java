@@ -7,7 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TiendaEnLineaApplication {
 
 	public static void main(String[] args) {
-
 		SpringApplication.run(TiendaEnLineaApplication.class, args);
 	}
 
